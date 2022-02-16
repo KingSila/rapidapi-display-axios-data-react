@@ -76,6 +76,26 @@ const IndexPage = () => {
       <h3>Symbol: {responseData ? responseData.symbol : ""}</h3>
       <p>Daily Time Series with Splits and Dividend Events</p>
       <small>Last Refresh: {responseData ? responseData.refreshed : ""}</small>
+      <LineChart
+        width={900}
+        height={500}
+        data={responseData.closePrices}
+        margin={{ top: 50, right: 20, left: 10, bottom: 5 }}
+      >
+        <YAxis tickCount={10} type="number" width={80}>
+          <Label value="Close Price" position="insideLeft" angle={270} />
+        </YAxis>
+        <Tooltip />
+        <XAxis
+          padding={{ left: 5, right: 5 }}
+          tickCount={10}
+          angle={-60}
+          height={90}
+          dataKey="date"
+        />
+        <CartesianGrid stroke="#f5f5f5" />
+        <Line type="monotone" dataKey="close" stroke="#ff7300" yAxisId={0} />
+      </LineChart>
     </div>
   );
 };
